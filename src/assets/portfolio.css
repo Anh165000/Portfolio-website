@@ -18,7 +18,10 @@
     box-sizing: border-box;
 }
 
-html,
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
     background-color: var(--dark-bg);
@@ -28,20 +31,9 @@ body {
 }
 
 /* ============================================
-   Grainy Noise Background
+   Grainy Noise Background - Removed for performance
    ============================================ */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml,<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100%" height="100%" fill="%23000" /><rect width="100%" height="100%" fill="%23fff" opacity="0.05" filter="url(%23noise)" /></svg>');
-    background-size: 400px 400px;
-    pointer-events: none;
-    z-index: 0;
-}
+/* Removed expensive SVG filter background to improve Chrome scrolling performance */
 
 main {
     position: relative;
@@ -55,12 +47,13 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-auto-flow: dense;
-    grid-auto-rows: minmax(180px, auto);
+    grid-auto-rows: minmax(min-content, max-content);
     gap: 1.5rem;
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    overflow: visible;
 }
 
 /* Grid Item Spans - Desktop (4 columns) */
@@ -75,6 +68,9 @@ main {
     position: relative;
     overflow: hidden;
     word-wrap: break-word;
+    backdrop-filter: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero-card {

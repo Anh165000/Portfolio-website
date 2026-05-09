@@ -1,6 +1,6 @@
 <template>
-  <div class="tech-content" data-aos="fade-up">
-    <h3>Tech Stack</h3>
+  <div class="tech-content" id="tech" data-aos="fade-up">
+    <h3>Technical Proficiency</h3>
     
     <div class="tech-grid">
       <div 
@@ -12,6 +12,12 @@
       >
         <i :class="tech.icon"></i>
         <p>{{ tech.name }}</p>
+        <div class="proficiency">
+          <div class="proficiency-bar">
+            <div class="proficiency-fill" :style="{ width: tech.proficiency + '%' }"></div>
+          </div>
+          <span class="proficiency-label">{{ tech.proficiency }}%</span>
+        </div>
       </div>
     </div>
   </div>
@@ -19,11 +25,12 @@
 
 <script setup>
 const technologies = [
-  { id: 1, name: 'C++', icon: 'fas fa-code', delay: '0' },
-  { id: 2, name: 'Python', icon: 'fab fa-python', delay: '100' },
-  { id: 3, name: 'JavaScript', icon: 'fab fa-js-square', delay: '200' },
-  { id: 4, name: 'Vue 3', icon: 'fab fa-vuejs', delay: '300' },
-  { id: 5, name: 'Git', icon: 'fab fa-git-alt', delay: '400' }
+  { id: 1, name: 'Python', icon: 'fab fa-python', proficiency: 80, delay: '0' },
+  { id: 2, name: 'JavaScript', icon: 'fab fa-js-square', proficiency: 70, delay: '100' },
+  { id: 3, name: 'Vue 3', icon: 'fab fa-vuejs', proficiency: 70, delay: '200' },
+  { id: 4, name: 'Java', icon: 'fab fa-java', proficiency: 70, delay: '300' },
+  { id: 5, name: 'C++', icon: 'fas fa-code', proficiency: 60, delay: '400' },
+  { id: 6, name: 'Git', icon: 'fab fa-git-alt', proficiency: 95, delay: '500' }
 ]
 </script>
 
@@ -42,7 +49,7 @@ h3 {
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
 }
 
@@ -86,11 +93,40 @@ h3 {
   font-weight: 600;
   color: var(--text-secondary);
   transition: color 0.3s ease;
-  margin: 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .tech-item:hover p {
   color: var(--text-primary);
+}
+
+.proficiency {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.proficiency-bar {
+  width: 80%;
+  height: 4px;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.proficiency-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.proficiency-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 @media (max-width: 1024px) {

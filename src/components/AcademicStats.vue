@@ -1,12 +1,12 @@
 <template>
-  <div class="academic-content" data-aos="fade-up">
+  <div class="academic-content" id="academic-stats" data-aos="fade-up">
     <h3>Academic & Certifications</h3>
 
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-ring" style="--progress: 92">
+        <div class="stat-ring" style="--progress: 83">
           <div class="stat-ring-inner">
-            <span class="stat-value">3.7</span>
+            <span class="stat-value">3.3</span>
             <span class="stat-max">/ 4.0</span>
           </div>
         </div>
@@ -14,10 +14,10 @@
       </div>
 
       <div class="stat-card">
-        <div class="stat-ring" style="--progress: 70">
+        <div class="stat-ring" style="--progress: 60">
           <div class="stat-ring-inner">
-            <span class="stat-value">7.0</span>
-            <span class="stat-max">IELTS</span>
+            <span class="stat-value">B1</span>
+            <span class="stat-max">VSTEP</span>
           </div>
         </div>
         <p class="stat-label">English</p>

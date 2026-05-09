@@ -1,5 +1,5 @@
 <template>
-  <div class="projects-content">
+  <div class="projects-content" data-section="projects">
     <h3 class="mb-3">Featured Projects</h3>
     
     <!-- Loading State -->
@@ -51,7 +51,7 @@ import { ref, onMounted } from 'vue'
 const projects = ref([])
 const loading = ref(true)
 const error = ref(null)
-const GITHUB_USERNAME = 'anh1650000'
+const GITHUB_USERNAME = 'Anh165000'
 
 const languageIconMap = {
   'JavaScript': 'fab fa-js-square',

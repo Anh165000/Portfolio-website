@@ -41,35 +41,19 @@ import { ref } from 'vue'
 const experiences = ref([
   {
     id: 1,
-    years: '2023 - Present',
-    company: 'Tech Startup Inc',
-    position: 'Full Stack Developer',
-    description: 'Building scalable web applications with Vue 3 and Node.js. Leading frontend architecture decisions and mentoring junior developers.',
-    technologies: ['Vue.js', 'Node.js', 'PostgreSQL']
+    years: '2026 - Present',
+    company: 'Freelance & Personal Projects',
+    position: '',
+    description: 'Working on personal projects and freelance gigs, honing skills in web development and AI engineering.',
+    technologies: ['Python', 'Vue.js', 'MongoDB']
   },
   {
     id: 2,
-    years: '2022 - 2023',
-    company: 'Digital Agency Co',
-    position: 'Frontend Developer',
-    description: 'Developed responsive web interfaces using Vue 3 and Tailwind CSS. Collaborated with designers to implement pixel-perfect designs.',
-    technologies: ['Vue.js', 'Tailwind CSS', 'Figma']
-  },
-  {
-    id: 3,
-    years: '2020 - 2022',
-    company: 'Education Platform',
-    position: 'Junior Web Developer',
-    description: 'Started career building interactive learning platforms. Worked with HTML, CSS, JavaScript, and basic backend integration.',
-    technologies: ['JavaScript', 'React', 'MongoDB']
-  },
-  {
-    id: 4,
-    years: '2016 - 2020',
-    company: 'University of Technology',
+    years: '2023 - 2027',
+    company: 'Can Tho University',
     position: 'Computer Science Student',
-    description: 'Completed degree with focus on full-stack web development and software engineering principles. Participated in hackathons.',
-    technologies: ['C++', 'Python', 'SQL']
+    description: 'Studying computer science with a focus on machine learning, deep learning and algorithms.',
+    technologies: ['Python', 'MySQL', 'Git']
   }
 ])
 
@@ -84,7 +68,8 @@ const techIconMap = {
   'PostgreSQL': 'fas fa-database',
   'Tailwind CSS': 'fas fa-palette',
   'Figma': 'fas fa-pen-nib',
-  'SQL': 'fas fa-database'
+  'SQL': 'fas fa-database',
+  'Git': 'fab fa-git-alt'
 }
 
 const getTechIcon = (tech) => {

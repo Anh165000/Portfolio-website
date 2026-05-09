@@ -59,14 +59,28 @@ const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
 }
 
+const testScroll = () => {
+  window.scrollTo({ top: 500, behavior: 'smooth' })
+}
+
 const scrollToSection = (sectionId) => {
   showMobileMenu.value = false
-  const element = document.querySelector(`[data-section="${sectionId}"]`)
-  if (element) {
-    const navbarHeight = 80
-    const targetTop = element.getBoundingClientRect().top + window.scrollY - navbarHeight
-    window.scrollTo({ top: targetTop, behavior: 'smooth' })
-  }
+  
+  setTimeout(() => {
+    const element = document.querySelector(`[data-section="${sectionId}"]`)
+    
+    if (element) {
+      const rect = element.getBoundingClientRect()
+      const navbarHeight = 70
+      const absoluteTop = rect.top + window.scrollY
+      const targetScroll = absoluteTop - navbarHeight
+      
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      })
+    }
+  }, 50)
 }
 
 onMounted(() => {
@@ -148,6 +162,9 @@ onMounted(() => {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   position: relative;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
 }
 
 .nav-link:hover {
@@ -201,6 +218,9 @@ onMounted(() => {
   font-weight: 600;
   transition: all 0.3s ease;
   border-left: 3px solid transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
 }
 
 .mobile-link:hover {

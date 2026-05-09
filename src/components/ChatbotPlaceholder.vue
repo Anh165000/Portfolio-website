@@ -22,7 +22,7 @@
 
         <div class="chat-body">
           <div class="welcome-message">
-            <p>👋 Hi! I'm a chatbot placeholder. Feel free to ask me anything!</p>
+            <p>👋 Hi! I'm a chatbot assistant. Feel free to ask me anything!</p>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const sendMessage = () => {
 <style scoped>
 .chatbot-wrapper {
   position: fixed;
-  bottom: 2rem;
+  bottom: 4rem;
   right: 2rem;
   z-index: 999;
   font-family: 'Plus Jakarta Sans', sans-serif;

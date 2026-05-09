@@ -41,7 +41,7 @@
       </div>
 
       <!-- Experience Timeline Section -->
-      <div class="experience-section-wrapper">
+      <div class="experience-section-wrapper" data-section="experience">
         <ExperienceTimeline />
       </div>
 
@@ -50,25 +50,53 @@
 
       <!-- Footer -->
       <footer class="site-footer" data-section="footer">
-        <div class="footer-inner">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <i class="fas fa-code"></i>
-              <span>Phạm Duy Anh</span>
+        <div class="footer-content">
+          <!-- Contact Items -->
+          <div class="footer-top">
+            <div class="footer-contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <p class="contact-label">Phone</p>
+              <p class="contact-value">+84 834573195</p>
             </div>
-            <p>Building thoughtful web experiences with Vue, modern UI, and a focus on clean execution.</p>
+
+            <div class="footer-contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <p class="contact-label">Receive emails at</p>
+              <p class="contact-value">phamduyanh.01062005da@gmail.com</p>
+            </div>
+
+            <div class="footer-contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <p class="contact-label">Location</p>
+              <p class="contact-value">Can Tho City, Vietnam</p>
+            </div>
           </div>
 
-          <div class="footer-links">
-            <a href="#home" @click.prevent="scrollToSection('home')">Home</a>
-            <a href="#experience" @click.prevent="scrollToSection('experience')">Experience</a>
-            <a href="#projects" @click.prevent="scrollToSection('projects')">Projects</a>
-            <a href="#contact" @click.prevent="scrollToSection('contact')">Contact</a>
-          </div>
-
-          <div class="footer-copy">
-            <span>© 2026 Phạm Duy Anh</span>
-            <span>Designed and built with Vue 3</span>
+          <!-- Bottom Footer -->
+          <div class="footer-bottom">
+            <div class="footer-copyright">
+              <span>© 2026 Pham Duy Anh | Built with Vue 3 & Vite</span>
+            </div>
+            <div class="footer-socials">
+              <a href="https://github.com/anh165000" target="_blank" rel="noopener noreferrer" title="Github">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.instagram.com/phm.danhh__/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/duy-anh-ph%E1%BA%A1m-35ba53291/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://www.facebook.com/duyanhpham.165.000" target="_blank" rel="noopener noreferrer" title="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
@@ -87,32 +115,25 @@ import ProjectsGrid from '../components/ProjectsGrid.vue'
 import ContactCard from '../components/ContactCard.vue'
 import ChatbotPlaceholder from '../components/ChatbotPlaceholder.vue'
 
-const scrollToSection = (sectionId) => {
-  const element = document.querySelector(`[data-section="${sectionId}"]`)
-  if (element) {
-    const navbarHeight = 80
-    const targetTop = element.getBoundingClientRect().top + window.scrollY - navbarHeight
-    window.scrollTo({ top: targetTop, behavior: 'smooth' })
-  }
-}
-
 onMounted(async () => {
   await new Promise(resolve => setTimeout(resolve, 0))
 
   requestAnimationFrame(() => {
     if (window.AOS) {
       window.AOS.init({
-        duration: 800,
-        easing: 'ease-in-out-cubic',
-        once: false,
-        mirror: true,
-        offset: 100
+        duration: 400,
+        once: true,
+        disable: 'mobile',
+        offset: 50
       })
     }
 
     if (window.AOS) {
       window.AOS.refresh()
     }
+
+    // Vanilla Tilt disabled to prevent hover lag
+    // Performance optimization: removed 3D tilt animation
   })
 })
 </script>
@@ -127,8 +148,9 @@ onMounted(async () => {
 .portfolio-main {
   position: relative;
   width: 100%;
+  height: auto;
   min-height: 100vh;
-  padding: 100px 0 2rem 0;
+  padding: 100px 0 0 0;
   overflow-x: hidden;
 }
 
@@ -209,7 +231,7 @@ onMounted(async () => {
   background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(167, 139, 250, 0.1);
-  border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+  /* border-bottom: 1px solid rgba(167, 139, 250, 0.1); */
   margin: 2rem 0;
 }
 
@@ -218,69 +240,105 @@ onMounted(async () => {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 2rem 1.5rem 3rem;
-  border-top: 1px solid rgba(167, 139, 250, 0.12);
-  background: linear-gradient(180deg, rgba(10, 14, 39, 0.2) 0%, rgba(10, 14, 39, 0.85) 100%);
+  bottom: 0;
+  margin-top: 3rem;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 14, 39, 0.8) 0%,
+    rgba(10, 14, 39, 0.85) 25%,
+    rgba(10, 14, 39, 0.95) 50%,
+    rgba(10, 14, 39, 0.85) 75%,
+    rgba(10, 14, 39, 0.8) 100%
+  );
+  color: var(--text-secondary);
 }
 
-.footer-inner {
+.footer-content {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 1.5rem 2rem;
+  /* background-color: rgba (10, 14, 39, 0.8); */
+  bottom: 0;
+  border-top: 1px solid rgba(167, 139, 250, 0.1);
+}
+
+.footer-top {
+  max-width: 1400px;
+  margin: 0 auto 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-value {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-bottom {
   max-width: 1400px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.footer-brand p {
-  margin: 0.75rem 0 0;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 32rem;
-}
-
-.footer-logo {
-  display: inline-flex;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(167, 139, 250, 0.2);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.footer-logo i {
-  color: var(--primary-color);
+.footer-copyright {
+  font-size: 0.85rem;
 }
 
-.footer-links {
+.footer-socials {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 
-.footer-links a {
-  color: var(--text-secondary);
+.footer-socials a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-socials a:hover {
   color: var(--primary-color);
-  transform: translateX(4px);
-}
-
-.footer-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  color: var(--text-secondary);
-  text-align: right;
+  transform: translateY(-3px);
 }
 
 /* Desktop Responsiveness */
 @media (max-width: 1200px) {
   .portfolio-main {
-    padding: 90px 0 2rem 0;
+    padding: 90px 0 0 0;
   }
 
   .gradient-orb {
@@ -306,7 +364,7 @@ onMounted(async () => {
 /* Tablet */
 @media (max-width: 768px) {
   .portfolio-main {
-    padding: 80px 0 2rem 0;
+    padding: 80px 0 0 0;
   }
 
   .gradient-orb {
@@ -338,19 +396,27 @@ onMounted(async () => {
     grid-row: span 1;
   }
 
-  .footer-inner {
+  .footer-top {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .footer-copy {
-    text-align: left;
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
   }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
   .portfolio-main {
-    padding: 70px 0 1.5rem 0;
+    padding: 70px 0 0 0;
   }
 
   .gradient-orb {
@@ -371,7 +437,7 @@ onMounted(async () => {
   }
 
   .site-footer {
-    padding: 1.5rem 1rem 2rem;
+    padding: 0 1rem 2rem;
   }
 }
 </style>
